@@ -10,9 +10,19 @@
 	\usetheme{Hannover}
 }
 \setbeamercolor{block title}{bg=yellow!50,fg=black}
-\setbeamercolor{block body}{bg=yellow!5,fg=black}
+\setbeamercolor{block body}{bg=yellow!10,fg=black}
 \setbeamercovered{transparent}
 \setbeamertemplate{frametitle}[default][left]
+\AtBeginSection[]{
+	\begin{frame}
+		\vfill
+		\centering
+		\begin{beamercolorbox}[center]{title}
+			\usebeamerfont{title}\insertsectionhead\par%
+		\end{beamercolorbox}
+		\vfill
+	\end{frame}
+}
 
 % listings configuration
 \lstset{
@@ -34,13 +44,16 @@
 
 
 
+
 \title[]{An Introduction to Developing Web Applications with Flask}
 
 \subtitle{\vspace{0.25in} \includegraphics[scale=.15]{images/flask-logo.png}}
 
-\author[]{[HackRice?] Workshop \\ Prudhvi Boyapalli}
+\author[]{Prudhvi Boyapalli}
 
-\date{January 13, 2017}
+\institute{Hack \& Learn 2017 Workshop \\ Rice Computer Science Club}
+
+\date{}
 
 \begin{document}
 
@@ -48,7 +61,7 @@
 	\titlepage
 \end{frame}
 
-\begin{frame}[t]{Outline}
+\begin{frame}[t]{}
 	\tableofcontents
 \end{frame}
 
@@ -232,8 +245,54 @@
 		\end{block}
 	\end{frame}
 
+\section{TODO: Complete Web App}
+
+\subsection{Project Structure}
+% TODO
+
+\subsection{HTTP Communication}
+% TODO
+
+\subsection{Putting It All Together}
+% TODO
+
 
 \section{Conclusion}
+
+\subsection{Summary}
+	\begin{frame}[t]{Summary \& Next Steps}
+		We covered:
+		\begin{itemize}
+			\item{Basic routing}
+			\item{Accessing request data}
+			\item{\texttt{GET} and \texttt{POST} requests}
+			\item{Building and serving a complex web app with HTML, CSS and
+					JavaScript}
+		\end{itemize}
+	\end{frame}
+
+
+	\begin{frame}[t]{Next Steps}
+		\begin{block}{More Flask Features}
+			\begin{itemize}
+				\item{URL Building}
+				\item{Additional HTTP Methods (\texttt{GET, POST, DELETE,} etc.)}
+				\item{HTML templates with placeholders}
+				\item{User file uploads}
+				\item{Reading and writing cookies}
+				\item{Redirects and error handling}
+				\item{Managing sessions}
+			\end{itemize}
+		\end{block}
+
+		\begin{block}{Deploying your web app}
+			Once you've developed and tested you app locally, you can deploy
+			your flask code and make it publicly accessible. There lots of
+			tutorials on how to do this for various cloud providers (AWS,
+			Azure, DigitalOcean, etc).
+		\end{block}
+	\end{frame}
+
 
 \subsection{Resources}
 	\begin{frame}[t]{Resources}
@@ -243,9 +302,40 @@
 				\indent \url{github.com/hack-rice/flask-tutorial}
 			}
 			\item{
-				\textbf{Flask website \& documentation}\\
+				\textbf{Flask website \& awesome documentation}\\
 				\indent \url{flask.pocoo.org}
 			}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[t]{Contact}
+		Prudhvi Boyapalli
+		\begin{itemize}
+			\item{prb2 AT rice.edu}
+		\end{itemize}
+
+		HackRice
+		\begin{itemize}
+			\item{Fall 2017}
+			\item{Annual hackathon right here on campus}
+			\item{Great way to hone your skills and make something cool}
+		\end{itemize}
+
+		RiceApps
+		\begin{itemize}
+			\item{Work on a team of students to build useful applications}
+			\item{Great way to gain hands on development experience}
+			\item{\url{http://riceapps.org}}
+		\end{itemize}
+
+		Rice CS Facebook Group
+		\begin{itemize}
+			\item{\url{https://facebook.com/groups/365985373415471}}
+		\end{itemize}
+
+		CS Club Facebook Page
+		\begin{itemize}
+			\item{\url{https://facebook.com/ricecsclub}}
 		\end{itemize}
 	\end{frame}
 
