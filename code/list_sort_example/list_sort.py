@@ -19,12 +19,9 @@ def sort():
     results["order"] = "ASC" if request.form['isASC'] else "DESC"
     print("2")
 
-    results["sorted"] = sorted(results["unsorted"])
+    results["sorted"] = sorted(results["unsorted"], reverse = False if request.form['isASC'] == 'true' else True)
     print results
 
-    if request.form['isASC'] is False:
-        results["sorted"] = reversed(results["sorted"])
-    
     results_json = json.dumps(results)
     print results_json
 

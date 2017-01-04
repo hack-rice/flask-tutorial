@@ -1,6 +1,7 @@
 
 
 function sort_list() {
+    $("#results-panel")[0].hidden = true;
 
     var sort_data = {
         "list" : $("#input-list")[0].value,
@@ -15,9 +16,16 @@ function sort_list() {
         data: sort_data,
         success: function(data, status, jqxhr) {
             console.log(data);
+            var table_string = ""
+            for (var idx in data.sorted) {
+                table_string = table_string.concat("<tr><td>" + data.sorted[idx] + "</td></tr>");
+            }
+            console.log(table_string);
+            $("#results-table")[0].innerHTML = table_string;
+            $("#results-panel")[0].hidden = false;
         },
         error: function(jqxhr, status, error) {
-
+            alert("An error occurred.\n" + error + "\n" + status);
         }
     });
 }
