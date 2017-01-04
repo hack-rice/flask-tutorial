@@ -45,9 +45,9 @@
 
 
 
-\title[]{An Introduction to Developing Web Applications with Flask}
+\title[]{An Introduction to Web Development \\ with Flask}
 
-\subtitle{\vspace{0.25in} \includegraphics[scale=.15]{images/flask-logo.png}}
+\subtitle{\vspace{0.25in} \includegraphics[scale=0.15]{images/flask-logo.png}}
 
 \author[]{Prudhvi Boyapalli}
 
@@ -88,30 +88,44 @@
 			- HTML, CSS, JavaScript\\
 			- Rendered by the browser
 		};
-		\draw[very thick, ->] (server) -- (browser);
-		\draw[very thick, ->] (browser) -- (server);
+		\draw[very thick, ->] (server) -- (browser)
+			node [midway, left]{HTTP Methods};
+		\draw[very thick, ->] (browser) -- (server)
+			node [midway, right]{GET, POST, etc.};
 		\end{tikzpicture}
 		\end{center}
 	\end{frame}
 
 
-\subsection{Setup}
-	\begin{frame}[t]{Install Python}
+\subsection{Pre-reqs}
+	\begin{frame}[t]{Necessary prior knowledge}
 		\begin{itemize}
-			\item{Basic level of Python knowledge is needed for this tutorial}
-			\begin{itemize}
-				\item{If you've taken COMP140 you're in good shape}
-			\end{itemize}
-
-			\item{Install Python if you haven't already: \url{python.org}}
-
-			\item{I'm using 2.7, Flask also supports 3.3+}
+			\item{
+				Basic familiarity with Python
+				\begin{itemize}
+					\item{If you've taken COMP140 you're in good shape}
+				\end{itemize}
+			}
+			\item{
+				Basic familiarity with HTML and JavaScript, CSS
+				\begin{itemize}
+					\item{Be able to read HTML and JavaScript syntax}
+					\item{CSS is optional}
+				\end{itemize}
+			}
 		\end{itemize}
 	\end{frame}
 
 
-	\begin{frame}[t]{Install Flask}
+\subsection{Setup}
+	\begin{frame}[t]{Install Python \& Flask}
 		\begin{itemize}
+			\item{
+				Install Python if you haven't already: \url{python.org}
+				\begin{itemize}
+					\item{I'm using 2.7, Flask also supports 3.3+}
+				\end{itemize}
+			}
 			\item{
 				Install Flask using PIP
 				\begin{itemize}
@@ -120,7 +134,6 @@
 				\end{itemize}
 			}
 		\end{itemize}
-
 		\begin{block}{Flask Installation}
 		\begin{semiverbatim}
 			> sudo pip install Flask
@@ -253,7 +266,7 @@
 		\end{block}
 	\end{frame}
 
-\section{TODO: Complete Web App}
+\section{List Sort}
 
 \subsection{Project Structure}
 % TODO
