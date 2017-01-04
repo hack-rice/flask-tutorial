@@ -20,7 +20,6 @@ function sort_list() {
             for (var idx in data.sorted) {
                 table_string = table_string.concat("<tr><td>" + data.sorted[idx] + "</td></tr>");
             }
-            console.log(table_string);
             $("#results-table")[0].innerHTML = table_string;
             $("#results-panel")[0].hidden = false;
         },
