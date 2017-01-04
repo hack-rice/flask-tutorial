@@ -11,6 +11,7 @@
 }
 \setbeamercolor{block title}{bg=yellow!50,fg=black}
 \setbeamercolor{block body}{bg=yellow!10,fg=black}
+\setbeamertemplate{enumerate subitem}[square]
 \setbeamercovered{transparent}
 \setbeamertemplate{frametitle}[default][left]
 \AtBeginSection[]{
@@ -18,7 +19,7 @@
 		\vfill
 		\centering
 		\begin{beamercolorbox}[center]{title}
-			\usebeamerfont{title}\insertsectionhead\par%
+			\usebeamerfont{title}\insertsection\par%
 		\end{beamercolorbox}
 		\vfill
 	\end{frame}
@@ -45,7 +46,7 @@
 
 
 
-\title[]{An Introduction to Web Development \\ with Flask}
+\title[Web Dev \\ with Flask]{An Introduction to Web Development \\ with Flask}
 
 \subtitle{\vspace{0.25in} \includegraphics[scale=0.15]{images/flask-logo.png}}
 
@@ -106,6 +107,7 @@
 					\item{If you've taken COMP140 you're in good shape}
 				\end{itemize}
 			}
+			\pause
 			\item{
 				Basic familiarity with HTML and JavaScript, CSS
 				\begin{itemize}
@@ -170,7 +172,7 @@
 	\end{frame}
 
 
-\section{Hello World}
+\section[Hello World]{Hello World \newline (Open up your editor and follow along!)}
 
 \subsection{Basic Example}
 	\begin{frame}[t]{Super basic hello world example}
@@ -211,6 +213,7 @@
 
 \subsection{Closer Look}
 	\begin{frame}[t]{How did that work?}
+		\setbeamercovered{}
 		\begin{enumerate}
 			\item{We started up a local flask server which is listening at
 					IP address 127.0.0.1, port 5000}
@@ -266,29 +269,164 @@
 		\end{block}
 	\end{frame}
 
-\section{List Sort}
+\section[List Sort]{List Sort \newline (Don't try to code this up right now)}
+\subsection{Demo}
+	\begin{frame}[t]{Quick Demo}
+		\vfill
+		\begin{center}
+			\href{http://127.0.0.1:5000}{\includegraphics[scale=0.4]{images/list-sort.png}}
+		\end{center}
+		\vfill
+	\end{frame}
 
-\subsection{Project Structure}
-% TODO
+\subsection{Structure}
+	\begin{frame}[t]{Project Structure}
+		As we build more complex web applications, we need to organize our
+		files in a sensible way and maintain compatibility with flask \\
 
-\subsection{HTTP Communication}
-% TODO
+		\begin{block}{List Sort Project Structure}
+			\footnotesize{\textit{Directories indicated in bold.}}
+			\begin{itemize}
+				\item{
+					\textbf{list\_sort\_example}
+					\begin{itemize}
+						\item{
+							\textbf{static}
+							\begin{itemize}
+								\item{
+									\textbf{scripts} (JavaScript files)
+								}
+								\item{
+									\textbf{styles} (CSS files)
+								}
+							\end{itemize}
+						}
+						\pause
+						\item{
+							\textbf{templates}
+							\begin{itemize}
+								\item{index.html}
+							\end{itemize}
+						}
+						\pause
+						\item{
+							list\_sort.py
+						}
+					\end{itemize}
+				}
+			\end{itemize}
+		\end{block}
+	\end{frame}
+
+\subsection{Communication}
+	\begin{frame}[t]{\textbf{H}yper\textbf{t}ext \textbf{T}ransfer
+			\textbf{P}rotocol}
+		\textit{The data transfer protocol used on the World Wide Web}
+
+		\begin{description}
+			\item[GET]{
+					The most common HTTP method, used to get files from a
+					server. Multiple GET requests are made by your browser
+					every time you visit a webpage to retrieve all the
+					necessary resources needed to render that page, such as
+					HTML files, CSS and JavaScript files, images, etc.
+					\vspace{0.15cm}
+				}
+			\pause
+			\item[POST]{
+				This method is used to send data to a server. Commonly
+				used to submit form data or any other user input.
+			}
+		\end{description}
+		\pause
+
+		\vspace{0.25cm}
+		These are the most common HTTP request methods and the ones used by the
+		demo, others exist: \\
+		\vspace{0.15cm}
+		\url{developer.mozilla.org/en-US/docs/Web/HTTP/Methods}
+	\end{frame}
 
 \subsection{Putting It All Together}
-% TODO
+	\begin{frame}[t]{Putting It All Together (part 1)}
+		\setbeamercovered{}
+		\textit{Retrieving resources and rendering the webpage}
+		\begin{enumerate}
+			\item{User enters the address into their browser}
+			\pause
+			\item{Browser sends a \texttt{GET} request to the address, in this case
+					\texttt{127.0.0.1:5000/}}
+			\pause
+			\item{The flask method bound to \texttt{"/"} is invoked and returns
+					\texttt{index.html}}
+			\pause
+			\item{Browser processes the HTML file, which instructs it to load
+					CSS and JavaScript files}
+			\pause
+			\item{Browser sends additional \texttt{GET} requests to the
+					location indicated within the HTML files}
+			\pause
+			\item{Flask serves the static CSS and JavaScript files}
+			\pause
+			\item{Browser now has all necessary files and renders the webpage}
+		\end{enumerate}
+		\pause
 
+		\large{\textbf{This all happens within milliseconds!}}
+	\end{frame}
+
+	\begin{frame}[t]{Putting It All Together (part 2)}
+		\setbeamercovered{}
+		\textit{Send data to the server, back-end computation, return results}
+		\begin{enumerate}
+			\item{User enters information into the input fields and clicks
+					the \texttt{Sort} button}
+			\pause
+			\item{The JavaScript function bound to that button is invoked}
+			\pause
+			\item{The input information is read from the input
+					fields and stored in an object
+					(\textbf{J}ava\textbf{S}cript \textbf{O}bject
+					\textbf{N}otation)}
+			\pause
+			\item{A \texttt{PUT} request is created and sent to
+					\texttt{"/sort"}}
+			\pause
+			\item{Flask server receives the request
+				\begin{enumerate}
+					\item{The method bound to \texttt{"/sort"} is
+							invoked}
+					\pause
+					\item{The data from the request object is
+							accessed}
+					\pause
+					\item{The list is sorted}
+					\pause
+					\item{A response object is created with the results in JSON
+							format and returned}
+				\end{enumerate}
+			}
+			\pause
+			\item{Back in the JavaScript function, the response is parsed}
+			\pause
+			\item{The necessary HTML to display the sorted list is created and inserted into page}
+		\end{enumerate}
+	\end{frame}
+
+\section{Deep Dive}
 
 \section{Conclusion}
 
 \subsection{Summary}
-	\begin{frame}[t]{Summary \& Next Steps}
-		We covered:
+	\begin{frame}[t]{Topics Covered}
 		\begin{itemize}
+			\item{Setting up a development environment for Flask}
 			\item{Basic \& and variable routing}
 			\item{\texttt{GET} and \texttt{POST} requests}
 			\item{Accessing request data}
-			\item{Building and serving a ``complex'' web app with HTML, CSS and
-					JavaScript}
+			\item{Overview of in-browser developer tools}
+			\item{Building and serving a ``complex'' web app with HTML, CSS,
+					JavaScript and Python}
 		\end{itemize}
 	\end{frame}
 
@@ -297,22 +435,26 @@
 		\begin{block}{More Flask Features}
 			\begin{itemize}
 				\item{URL Building}
-				\item{Additional HTTP Methods (\texttt{GET, POST, DELETE,} etc.)}
-				\item{HTML templates with placeholders}
-				\item{User file uploads}
+				\item{Additional HTTP Methods}
+				\item{HTML templates with placeholders, complex templating
+						language}
+				\item{File uploads}
 				\item{Reading and writing cookies}
 				\item{Redirects and error handling}
 				\item{Managing sessions}
+				\item{And lots of other stuff}
 			\end{itemize}
 		\end{block}
-		\pause
 
-		\begin{block}{Deploying your web app}
-			Once you've developed and tested you app locally, you can deploy
-			your flask code and make it publicly accessible. There lots of
-			tutorials on how to do this for various cloud providers (AWS,
-			Azure, DigitalOcean, etc).
-		\end{block}
+		 The Flask website and documentation is really good! Lots of great
+		 tutorials exist, just search around.
+	\end{frame}
+
+	\begin{frame}[t]{Deploying your web app}
+		Once you've developed and tested you app locally, you can deploy
+		your code and make it publicly accessible. There lots of
+		tutorials on how to do this for various cloud providers (AWS,
+		Azure, DigitalOcean, etc).
 	\end{frame}
 
 
