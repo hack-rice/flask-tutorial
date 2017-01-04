@@ -10,7 +10,7 @@ All of the source code for the two examples used in this workshop are in the `co
 
 ### Requirements
 - Ensure that Python2 or 3.3+ is installed on your system
-- Install [Flask](http://flask.pocoo.org) using pip: `pip install Flask`
+- Install [Flask](http://flask.pocoo.org) using pip: `> pip install Flask`
 
 ### Usage
 Enter the following commands into your shell:
